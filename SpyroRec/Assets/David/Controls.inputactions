@@ -1,0 +1,51 @@
+{
+    "name": "Controls",
+    "maps": [
+        {
+            "name": "My Action map",
+            "id": "47971a2b-1b61-43d5-98a6-ab77ad063778",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Button",
+                    "id": "33df2f29-6ad5-4cb6-8f5d-da7d4cc0c3dc",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "4fad7158-8a26-4a89-96b3-6dd1ade11bb3",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "My control scheme",
+                    "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": [
+        {
+            "name": "My control scheme",
+            "bindingGroup": "My control scheme",
+            "devices": [
+                {
+                    "devicePath": "<Gamepad>",
+                    "isOptional": false,
+                    "isOR": false
+                },
+                {
+                    "devicePath": "<Keyboard>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        }
+    ]
+}
