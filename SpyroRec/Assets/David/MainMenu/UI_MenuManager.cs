@@ -7,6 +7,7 @@ public class UI_MenuManager : MonoBehaviour
 {
     [SerializeField] GameObject _mainMenuPanel;
     [SerializeField] GameObject _optionsPanel;
+    [SerializeField] string _sceneStartName;
     void Start()
     {
         _mainMenuPanel.SetActive(true);
@@ -19,7 +20,7 @@ public class UI_MenuManager : MonoBehaviour
     }
     public void StartGame()
     {
-
+        SceneManager.LoadScene(_sceneStartName);
     }
     public void GoToMainMenu()
     {
