@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class EnemyMotor : MonoBehaviour
 {
-    [SerializeField] Transform _dest;
+    Transform _dest;
     [SerializeField] GameObject _prefabTarget;
     [SerializeField] float visonRadious;
     [SerializeField] GameObject _player;
