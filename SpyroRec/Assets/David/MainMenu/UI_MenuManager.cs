@@ -13,11 +13,6 @@ public class UI_MenuManager : MonoBehaviour
         _mainMenuPanel.SetActive(true);
         _optionsPanel.SetActive(false);
     }
-
-    void Update()
-    {
-        
-    }
     public void StartGame()
     {
         SceneManager.LoadScene(_sceneStartName);
