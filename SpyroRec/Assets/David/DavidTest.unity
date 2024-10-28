@@ -1658,6 +1658,73 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _pausePanel: {fileID: 315619950}
   _mainMenuName: TestMenu
+--- !u!1 &935480565
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 935480566}
+  - component: {fileID: 935480567}
+  - component: {fileID: 935480568}
+  m_Layer: 0
+  m_Name: FloorCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &935480566
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 935480565}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1302256855}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &935480567
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 935480565}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 3, y: 1, z: 3}
+  m_Center: {x: 0, y: 0.09, z: 0}
+--- !u!114 &935480568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 935480565}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a9996635778ab544bc82ada86256eaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _pMan: {fileID: 1302256858}
 --- !u!1 &1121532702
 GameObject:
   m_ObjectHideFlags: 0
@@ -1868,7 +1935,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1301898637}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 9000000, guid: 063e65bf9ea59ea44bb459f4b7490fd3, type: 3}
   m_Controller: {fileID: 9100000, guid: 3705d3d72efc1104fa7fa5b1ae6aa552, type: 2}
   m_CullingMode: 1
@@ -3561,6 +3628,7 @@ Transform:
   m_Children:
   - {fileID: 1302330447}
   - {fileID: 1302246783}
+  - {fileID: 935480566}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!135 &1302256856
@@ -3624,11 +3692,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rb: {fileID: 1302256857}
-  _walkSpeed: 5
+  _walkSpeed: 15
   _runSpeed: 10
-  _jumpStrenght: 3
+  _jumpStrenght: 20
   _gravityScale: 1
-  _rotSpeed: 5
+  _rotSpeed: 150
+  _myGrav: {x: 0, y: -9.81, z: 0}
+  _currGrav: {x: 0, y: -9.81, z: 0}
+  _gravMultip: 4
+  _gravForce: 0
+  _isGrounded: 0
+  _jumpCooldownTimeSetter: 0.1
 --- !u!4 &1302258275
 Transform:
   m_ObjectHideFlags: 0
