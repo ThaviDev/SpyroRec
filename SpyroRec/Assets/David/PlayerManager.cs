@@ -19,11 +19,14 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] float _gravMultip;
     [SerializeField] float _gravForce;
 
+    [SerializeField] Camera _camera;
+
+
     MyInputManager _inpt;
     bool _inWalkFwrd;
     bool _inWalkBck;
-    bool _inRotateLeft;
-    bool _inRotateRght;
+    bool _inWalkLeft;
+    bool _inWalkRght;
     bool _inAttack;
     bool _inRoll;
     bool _inJump;
@@ -37,19 +40,20 @@ public class PlayerManager : MonoBehaviour
         _jumpCooldown = _jumpCooldownTimeSetter;
         _isGrounded = value;
     }
-
     void Start()
     {
         _inpt = FindAnyObjectByType<MyInputManager>();
         _rb.useGravity = false;
+        _camera = Camera.main;
         //_myGrav.y *= _gravMultip;
     }
+
     void Update()
     {
         _inWalkFwrd = _inpt.GetMoveUp;
         _inWalkBck = _inpt.GetMoveDown;
-        _inRotateLeft = _inpt.GetMoveLeft;
-        _inRotateRght = _inpt.GetMoveRight;
+        _inWalkLeft = _inpt.GetMoveLeft;
+        _inWalkRght = _inpt.GetMoveRight;
         _inAttack = _inpt.GetAbility1;
         _inRoll = _inpt.GetAbility2;
         _inJump = _inpt.GetJump;
@@ -90,6 +94,47 @@ public class PlayerManager : MonoBehaviour
         // Calcular Gravedad Actual
         _currGrav = _myGrav * _gravForce * _gravMultip;
 
+        var _myDirZ = 0f;
+        var _myDirX = 0f;
+        if (_inWalkFwrd)
+        {
+            _myDirZ = 1f;
+        }
+        else if (_inWalkBck)
+        {
+            _myDirZ = -1f;
+        }
+        if (_inWalkRght)
+        {
+            _myDirX = 1f;
+        }
+        else if (_inWalkLeft)
+        {
+            _myDirX = -1f;
+        }
+        //_camera.transform.forward
+        // Para normalizar las direcciones se tiene que checar si ambos dir tienen un valor distinto del 0
+        // Y luego tomar su valor y dividirlo entre 2
+
+        // Obtén la dirección de la cámara en el plano horizontal (ignorando el eje Y)
+        Vector3 cameraForward = _camera.transform.forward;
+        cameraForward.y = 0; // Ignora la componente Y para evitar inclinaciones
+        cameraForward.Normalize();
+
+        Vector3 cameraRight = _camera.transform.right;
+        cameraRight.y = 0;
+        cameraRight.Normalize();
+
+        Vector3 mov = cameraForward * _myDirZ + cameraRight * _myDirX;
+
+        Vector3 velocity = mov.normalized * _curSpeed;
+        velocity.y = _rb.velocity.y; // Mantén la velocidad vertical
+        _rb.velocity = velocity;
+
+        // Gravedad
+        _rb.AddForce(_currGrav, ForceMode.Acceleration);
+
+        /*
         // Movimiento hacia adelante y hacia atrás
         var _myDirZ = 0f;
         if (_inWalkFwrd)
@@ -134,5 +179,6 @@ public class PlayerManager : MonoBehaviour
         _rb.MoveRotation(currentRotation * targetRotation);
 
         _rb.AddForce(_currGrav, ForceMode.Acceleration);
+        */
     }
 }
