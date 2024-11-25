@@ -7,6 +7,8 @@ public class PlayerManager : MonoBehaviour
     [Header("References")]
     [SerializeField] Rigidbody _rb;
     [SerializeField] GameObject _pVisual;
+    [SerializeField] CharacterController _characterController;
+    [SerializeField] Camera _camera;
 
     [Header("Stadistics")]
     [SerializeField] float _walkSpeed;
@@ -15,13 +17,13 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] float _rotationSpeed;
     [SerializeField] float _gravityScale;
     float _curSpeed;
+    bool _wasGrounded;
     [SerializeField] float _rotSpeed; // Rotation Speed
     [SerializeField] Vector3 _myGrav = new Vector3(0, -9.81f, 0);
     [SerializeField] Vector3 _currGrav = new Vector3(0, -9.81f, 0);
     [SerializeField] float _gravMultip;
     [SerializeField] float _gravForce;
 
-    [SerializeField] Camera _camera;
 
 
     MyInputManager _inpt;
@@ -32,7 +34,7 @@ public class PlayerManager : MonoBehaviour
     bool _inAttack;
     bool _inRoll;
     bool _inJump;
-    [SerializeField] bool _isGrounded;
+    //[SerializeField] bool _isGrounded;
     bool _isGliding;
     float _jumpCooldown;
     [SerializeField]float _jumpCooldownTimeSetter;
@@ -40,7 +42,6 @@ public class PlayerManager : MonoBehaviour
     public void SetGrounded(bool value)
     {
         _jumpCooldown = _jumpCooldownTimeSetter;
-        _isGrounded = value;
     }
     void Start()
     {
@@ -70,11 +71,11 @@ public class PlayerManager : MonoBehaviour
     private void FixedUpdate()
     {
         var _jumped = false;
-        if (_inJump && _isGrounded && _jumpCooldown < 0)
+        if (_inJump && _characterController.isGrounded && _jumpCooldown < 0)
         {
             _jumped = true;
         }
-        else if (_inJump && !_isGrounded) {
+        else if (_inJump && !_characterController.isGrounded) {
             _isGliding = true;
         } else
         {
@@ -82,7 +83,6 @@ public class PlayerManager : MonoBehaviour
         }
         if (_jumped) {
             _jumpCooldown = _jumpCooldownTimeSetter;
-            _isGrounded = false;
             _rb.AddForce(new Vector3(0f, _jumpStrenght), ForceMode.Impulse);
         }
 
@@ -93,8 +93,6 @@ public class PlayerManager : MonoBehaviour
         {
             _gravForce = 1;
         }
-        // Calcular Gravedad Actual
-        _currGrav = _myGrav * _gravForce * _gravMultip;
 
         var _myDirZ = 0f;
         var _myDirX = 0f;
@@ -131,17 +129,36 @@ public class PlayerManager : MonoBehaviour
 
         Vector3 velocity = mov.normalized * _curSpeed;
         velocity.y = _rb.velocity.y; // Mantén la velocidad vertical
-        _rb.velocity = velocity;
+        _characterController.Move(velocity * Time.deltaTime);
+        //_rb.velocity = velocity;
 
-        // Gravedad
-        _rb.AddForce(_currGrav, ForceMode.Acceleration);
+        // Funcionamiento de Gravedad
+        if (!_characterController.isGrounded) {
+            print("Estoy en el aire");
+            // Calcular Gravedad Actual
+            _currGrav = _myGrav * _gravForce * _gravMultip;
+            // Gravedad
+            _rb.AddForce(_currGrav, ForceMode.Acceleration);
+            _wasGrounded = true;
+        }
 
-        if (mov != Vector3.zero) // Solo rota si hay movimiento
+        if (_characterController.isGrounded && _wasGrounded)
         {
-            // Calcula la rotación hacia la dirección de movimiento
-            Quaternion targetRotation = Quaternion.LookRotation(mov);
+            print("dejo de estar en el aire");
+            // Calcular Gravedad Actual
+            //_currGrav = _myGrav * _gravForce * _gravMultip;
+            // Gravedad invertida
+            //_rb.AddForce(_currGrav * -1, ForceMode.Acceleration);
+            // Eliminar Aceleracion al tocar el suelo
+            _rb.velocity = new Vector3(_rb.velocity.x, 0f, _rb.velocity.z);
+            _wasGrounded = false;
+        }
 
-            // Aplica la rotación al objeto visual
+        print(_rb.velocity);
+
+        if (mov != Vector3.zero) 
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(mov);
             _pVisual.transform.rotation = Quaternion.Slerp(
                 _pVisual.transform.rotation,
                 targetRotation,
