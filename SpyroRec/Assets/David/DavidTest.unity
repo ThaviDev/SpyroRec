@@ -435,7 +435,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 210296275}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.1509419, y: -0.000000019016909, z: 0.000000002903717, w: 0.9885427}
+  m_LocalRotation: {x: 0.1509419, y: 0.000000019016907, z: -0.0000000029037166, w: 0.9885427}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1377,7 +1377,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 468424191}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.16885068, y: 0.00000001695933, z: -0.0000000029053095, w: 0.98564166}
+  m_LocalRotation: {x: 0.16885068, y: -0.000000016959328, z: 0.0000000029053093, w: 0.98564166}
   m_LocalPosition: {x: 0, y: 7.5099998, z: -18}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1462,6 +1462,38 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &761671507
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 761671508}
+  m_Layer: 0
+  m_Name: DragonVisual
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &761671508
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 761671507}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1302246783}
+  m_Father: {fileID: 1302256855}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &859514923
 GameObject:
   m_ObjectHideFlags: 3
@@ -1533,7 +1565,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 859514923}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.16885068, y: 0.000000008479667, z: -0.0000000014526551, w: 0.98564166}
+  m_LocalRotation: {x: 0.16885068, y: -0.000000008479661, z: 0.0000000014526542, w: 0.98564166}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3476,14 +3508,14 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0.030924408, y: 0.70643026, z: 0.030924408, w: 0.70643026}
   m_LocalPosition: {x: 0, y: 2.3169668, z: -1.344518}
-  m_LocalScale: {x: 0.010000001, y: 0.01, z: 0.01}
+  m_LocalScale: {x: 0.010000002, y: 0.010000001, z: 0.01}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1302265665}
   - {fileID: 1302225955}
   - {fileID: 1302320885}
   - {fileID: 1302242201}
-  m_Father: {fileID: 1302256855}
+  m_Father: {fileID: 761671508}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1302249133
 Transform:
@@ -3627,7 +3659,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1302330447}
-  - {fileID: 1302246783}
+  - {fileID: 761671508}
   - {fileID: 935480566}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3692,9 +3724,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rb: {fileID: 1302256857}
+  _pVisual: {fileID: 761671507}
   _walkSpeed: 15
   _runSpeed: 10
   _jumpStrenght: 20
+  _rotationSpeed: 7
   _gravityScale: 1
   _rotSpeed: 150
   _myGrav: {x: 0, y: -9.81, z: 0}
@@ -4768,7 +4802,7 @@ MonoBehaviour:
   m_XAxis:
     Value: 0
     m_SpeedMode: 0
-    m_MaxSpeed: 300
+    m_MaxSpeed: 600
     m_AccelTime: 0.1
     m_DecelTime: 0.1
     m_InputAxisName: Mouse X

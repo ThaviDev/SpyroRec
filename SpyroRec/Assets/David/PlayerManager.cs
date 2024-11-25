@@ -6,11 +6,13 @@ public class PlayerManager : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] Rigidbody _rb;
+    [SerializeField] GameObject _pVisual;
 
     [Header("Stadistics")]
     [SerializeField] float _walkSpeed;
     [SerializeField] float _runSpeed;
     [SerializeField] float _jumpStrenght;
+    [SerializeField] float _rotationSpeed;
     [SerializeField] float _gravityScale;
     float _curSpeed;
     [SerializeField] float _rotSpeed; // Rotation Speed
@@ -134,6 +136,18 @@ public class PlayerManager : MonoBehaviour
         // Gravedad
         _rb.AddForce(_currGrav, ForceMode.Acceleration);
 
+        if (mov != Vector3.zero) // Solo rota si hay movimiento
+        {
+            // Calcula la rotación hacia la dirección de movimiento
+            Quaternion targetRotation = Quaternion.LookRotation(mov);
+
+            // Aplica la rotación al objeto visual
+            _pVisual.transform.rotation = Quaternion.Slerp(
+                _pVisual.transform.rotation,
+                targetRotation,
+                Time.deltaTime * _rotationSpeed // Ajusta la velocidad de rotación
+            );
+        }
         /*
         // Movimiento hacia adelante y hacia atrás
         var _myDirZ = 0f;
