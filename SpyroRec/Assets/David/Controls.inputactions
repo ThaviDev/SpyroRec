@@ -290,6 +290,17 @@
                 },
                 {
                     "name": "",
+                    "id": "c9cbaa07-6195-4f91-8da0-fedcb4499907",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Ability1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "a692834d-6bcb-45b5-a481-4f3b7d0991ee",
                     "path": "<Keyboard>/shift",
                     "interactions": "",

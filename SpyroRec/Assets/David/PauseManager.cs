@@ -46,10 +46,13 @@ public class PauseManager : MonoBehaviour
         // Cambia la pausa
         if (_paused)
         {
+            Cursor.lockState = CursorLockMode.None;
             OnPause();
         }
         else if (!_paused)
         {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
             NotOnPause();
         }
         _onlyPauseOnce = true;

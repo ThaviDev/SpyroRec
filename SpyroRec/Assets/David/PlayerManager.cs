@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.PlasticSCM.Editor.WebApi;
 using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
@@ -9,6 +10,7 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] GameObject _pVisual;
     [SerializeField] CharacterController _characterController;
     [SerializeField] Camera _camera;
+    [SerializeField] GameObject _fireColisionAttack;
 
     [Header("Stadistics")]
     [SerializeField] float _walkSpeed;
@@ -16,6 +18,10 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] float _jumpStrenght;
     [SerializeField] float _rotationSpeed;
     [SerializeField] float _gravityScale;
+    [SerializeField] float _fireAttackDelay;
+    float _curFireAttackDelay;
+    [SerializeField] float _fireAttackDuration;
+    float _curFireAttackDuration;
     float _curSpeed;
     bool _wasGrounded;
     [SerializeField] float _rotSpeed; // Rotation Speed
@@ -45,9 +51,11 @@ public class PlayerManager : MonoBehaviour
     }
     void Start()
     {
+        Cursor.visible = false;
         _inpt = FindAnyObjectByType<MyInputManager>();
         _rb.useGravity = false;
         _camera = Camera.main;
+        _fireColisionAttack.SetActive(false);
         //_myGrav.y *= _gravMultip;
     }
 
@@ -67,6 +75,31 @@ public class PlayerManager : MonoBehaviour
         {
             _jumpCooldown -= Time.deltaTime;
         }
+        // Ataque de fuego
+        // -----
+        if (_curFireAttackDelay > 0)
+        {
+            print("Deja me calmo");
+            _curFireAttackDelay -= Time.deltaTime;
+        }
+
+        if (_curFireAttackDuration > 0)
+        {
+            print("Quemando!!");
+            _curFireAttackDuration -= Time.deltaTime;
+            _fireColisionAttack.SetActive(true);
+        } else
+        {
+            _fireColisionAttack.SetActive(false);
+        }
+
+        if (_inAttack && _curFireAttackDelay <= 0)
+        {
+            print("Fuego!!");
+            _curFireAttackDelay = _fireAttackDelay;
+            _curFireAttackDuration = _fireAttackDuration;
+        }
+        // -----
     }
     private void FixedUpdate()
     {
@@ -134,7 +167,7 @@ public class PlayerManager : MonoBehaviour
 
         // Funcionamiento de Gravedad
         if (!_characterController.isGrounded) {
-            print("Estoy en el aire");
+            //print("Estoy en el aire");
             // Calcular Gravedad Actual
             _currGrav = _myGrav * _gravForce * _gravMultip;
             // Gravedad
@@ -144,7 +177,7 @@ public class PlayerManager : MonoBehaviour
 
         if (_characterController.isGrounded && _wasGrounded)
         {
-            print("dejo de estar en el aire");
+            //print("dejo de estar en el aire");
             // Calcular Gravedad Actual
             //_currGrav = _myGrav * _gravForce * _gravMultip;
             // Gravedad invertida
@@ -154,7 +187,7 @@ public class PlayerManager : MonoBehaviour
             _wasGrounded = false;
         }
 
-        print(_rb.velocity);
+        //print(_rb.velocity);
 
         if (mov != Vector3.zero) 
         {
