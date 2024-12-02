@@ -30,8 +30,6 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] float _gravMultip;
     [SerializeField] float _gravForce;
 
-
-
     MyInputManager _inpt;
     bool _inWalkFwrd;
     bool _inWalkBck;
@@ -49,6 +47,8 @@ public class PlayerManager : MonoBehaviour
     {
         _jumpCooldown = _jumpCooldownTimeSetter;
     }
+
+    public bool GetGrounded { get { return _characterController.isGrounded; } }
     void Start()
     {
         Cursor.visible = false;

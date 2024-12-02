@@ -10,6 +10,14 @@ public class AttackColision : MonoBehaviour
         if (isEnemy != null)
         {
             Destroy(other.gameObject);
+        } else
+        {
+            var isChest = other.GetComponent<ChestManager>();
+            if (isChest != null)
+            {
+                Destroy(other.gameObject);
+            }
         }
+        
     }
 }
