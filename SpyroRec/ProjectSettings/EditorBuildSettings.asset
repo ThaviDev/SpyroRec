@@ -18,7 +18,7 @@ EditorBuildSettings:
     path: Assets/Patrick/Main/Scenes/Menu.unity
     guid: 4f3c953b0ed06e94aaddfb4c8c626108
   - enabled: 1
-    path: Assets/Patrick/Main/Scenes/Nivel1Old.unity
+    path: Assets/Patrick/Main/Scenes/Nivel1.unity
     guid: 5d70953297f000d429667b3918dcd09d
   - enabled: 0
     path: Assets/Patrick/Main/Scenes/NivelTest.unity
