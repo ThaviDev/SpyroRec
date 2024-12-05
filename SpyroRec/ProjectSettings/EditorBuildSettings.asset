@@ -26,4 +26,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Patrick/Main/Scenes/New Nivel1/Nivel1.unity
     guid: e0acba16e86d4d6489e2f870b6f94095
+  - enabled: 1
+    path: Assets/David/NivelTDavid1.unity
+    guid: 2f512cf299ba3e34295c9a957ca9cee2
   m_configObjects: {}
