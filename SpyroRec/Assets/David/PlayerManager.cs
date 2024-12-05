@@ -11,6 +11,8 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] CharacterController _characterController;
     [SerializeField] Camera _camera;
     [SerializeField] GameObject _fireColisionAttack;
+    [SerializeField] GameObject _fireVfx;
+    [SerializeField] Transform _setFireVfxPos;
 
     [Header("Stadistics")]
     [SerializeField] float _walkSpeed;
@@ -24,6 +26,7 @@ public class PlayerManager : MonoBehaviour
     float _curFireAttackDuration;
     float _curSpeed;
     bool _wasGrounded;
+    GameObject _currFireVfx;
     [SerializeField] float _rotSpeed; // Rotation Speed
     [SerializeField] Vector3 _myGrav = new Vector3(0, -9.81f, 0);
     [SerializeField] Vector3 _currGrav = new Vector3(0, -9.81f, 0);
@@ -90,6 +93,7 @@ public class PlayerManager : MonoBehaviour
             print("Quemando!!");
             _curFireAttackDuration -= Time.deltaTime;
             _fireColisionAttack.SetActive(true);
+            Instantiate(_fireVfx, _setFireVfxPos);
         } else
         {
             _fireColisionAttack.SetActive(false);
