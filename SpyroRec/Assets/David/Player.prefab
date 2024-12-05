@@ -749,6 +749,7 @@ GameObject:
   - component: {fileID: 1723487150619869452}
   - component: {fileID: 8824752090718925411}
   - component: {fileID: 6942581420510694278}
+  - component: {fileID: 9091487308763165443}
   - component: {fileID: 9100703049312273947}
   - component: {fileID: 3903580706993729446}
   m_Layer: 0
@@ -784,9 +785,9 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2151689518225198992}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 063e65bf9ea59ea44bb459f4b7490fd3, type: 3}
-  m_Controller: {fileID: 9100000, guid: 3705d3d72efc1104fa7fa5b1ae6aa552, type: 2}
+  m_Controller: {fileID: 9100000, guid: 5ad22375c3f63e744bba2b2c6ef3832d, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -854,6 +855,21 @@ MonoBehaviour:
   _gravMultip: 4
   _gravForce: 0
   _jumpCooldownTimeSetter: 0.1
+--- !u!114 &9091487308763165443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2151689518225198992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 285eaee9f3474d740913e9cce10c8009, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animator: {fileID: 1723487150619869452}
+  _inpt: {fileID: 0}
+  _pMan: {fileID: 6942581420510694278}
 --- !u!114 &9100703049312273947
 MonoBehaviour:
   m_ObjectHideFlags: 0
