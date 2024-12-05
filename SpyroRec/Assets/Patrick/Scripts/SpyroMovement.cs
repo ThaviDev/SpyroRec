@@ -172,7 +172,7 @@ public class SpyroMovement : MonoBehaviour
         Vector3 _movementDirection = new Vector3(horizontalInput, 0, verticalInput);
         float _inputMagnitude = Mathf.Clamp01(_movementDirection.magnitude);
 
-        if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+        if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.Joystick1Button0))
         {
             _inputMagnitude = 3;
         }
