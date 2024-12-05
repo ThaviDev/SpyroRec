@@ -76,6 +76,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Running",
+                    "type": "Button",
+                    "id": "ce6c3194-ebc2-47eb-ba50-ecd6f9c7cdbe",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -116,6 +125,17 @@
                     "name": "",
                     "id": "ccba7e3b-17a8-45d3-ac6f-bc3487e8f381",
                     "path": "<Joystick>/stick/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MoveUp",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8b24bb35-217c-4f44-b663-e200ab4bb1a6",
+                    "path": "<Gamepad>/leftStick/up",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -169,6 +189,17 @@
                 },
                 {
                     "name": "",
+                    "id": "8381709b-ab5f-4ad3-ae25-73b138f2f3ce",
+                    "path": "<Gamepad>/leftStick/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MoveDown",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "6d8e0f30-c6b4-49e3-8b8e-22fbb697a4a1",
                     "path": "<Keyboard>/a",
                     "interactions": "",
@@ -213,6 +244,17 @@
                 },
                 {
                     "name": "",
+                    "id": "2b41fa35-a513-4f50-8374-19bb4f0dae25",
+                    "path": "<Gamepad>/leftStick/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MoveLeft",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "425d1151-1424-4217-b216-73ddf7d05de4",
                     "path": "<Keyboard>/d",
                     "interactions": "",
@@ -248,6 +290,17 @@
                     "name": "",
                     "id": "131ed4c2-9236-44d2-9f95-6ebab103b2b1",
                     "path": "<Joystick>/stick/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MoveRight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "64f3eab3-b9aa-4483-87ba-e6f140670f7a",
+                    "path": "<Gamepad>/leftStick/right",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -384,6 +437,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Start",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "23bf089e-9c87-4d62-857a-fa31f061e40a",
+                    "path": "<Keyboard>/shift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Running",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c27341d1-64f3-4381-9ef3-292f909361e1",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Running",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

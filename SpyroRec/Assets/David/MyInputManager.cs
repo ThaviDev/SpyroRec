@@ -16,6 +16,7 @@ public class MyInputManager : MonoBehaviour
     bool _ability2;
     bool _jump;
     bool _start;
+    bool _run;
     private void Awake()
     {
         _input = _inputRef;
@@ -28,6 +29,7 @@ public class MyInputManager : MonoBehaviour
     public bool GetAbility2 { get { return _ability2; } }
     public bool GetJump { get { return _jump; } }
     public bool GetStart { get { return _start; } }
+    public bool GetRun { get { return _run; } }
 
     void Update()
     {
@@ -39,6 +41,7 @@ public class MyInputManager : MonoBehaviour
         if (OnAbility2()) { _ability2 = true; } else { _ability2 = false; }
         if (OnJump()) { _jump = true; } else { _jump = false; }
         if (OnStart()) { _start = true; } else { _start = false; }
+        if (OnRun()) { _run = true; } else { _run = false; }
     }
 
     public static bool OnMoveUp() 
@@ -73,4 +76,8 @@ public class MyInputManager : MonoBehaviour
     {
         return _input.actions.FindAction("Start").IsPressed();
     }
+    public static bool OnRun() {
+        return _input.actions.FindAction("Running").IsPressed();
+    }
+
 }

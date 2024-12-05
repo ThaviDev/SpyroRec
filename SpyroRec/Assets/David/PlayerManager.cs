@@ -41,6 +41,7 @@ public class PlayerManager : MonoBehaviour
     bool _inAttack;
     bool _inRoll;
     bool _inJump;
+    bool _inRun;
     //[SerializeField] bool _isGrounded;
     bool _isGliding;
     float _jumpCooldown;
@@ -62,6 +63,7 @@ public class PlayerManager : MonoBehaviour
         _camera = Camera.main;
         _fireColisionAttack.SetActive(false);
         //_myGrav.y *= _gravMultip;
+        _curSpeed = _walkSpeed;
     }
 
     void Update()
@@ -73,12 +75,22 @@ public class PlayerManager : MonoBehaviour
         _inAttack = _inpt.GetAbility1;
         _inRoll = _inpt.GetAbility2;
         _inJump = _inpt.GetJump;
+        _inRun = _inpt.GetRun;
 
-        _curSpeed = _walkSpeed;
+        //_curSpeed = _walkSpeed;
 
         if (_jumpCooldown >= 0)
         {
             _jumpCooldown -= Time.deltaTime;
+        }
+
+        if (_inRun)
+        {
+            _curSpeed = _runSpeed;
+        }
+        else
+        {
+            _curSpeed = _walkSpeed;
         }
         // Ataque de fuego
         // -----
