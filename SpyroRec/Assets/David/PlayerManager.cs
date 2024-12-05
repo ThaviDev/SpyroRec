@@ -42,6 +42,7 @@ public class PlayerManager : MonoBehaviour
     bool _isGliding;
     float _jumpCooldown;
     [SerializeField]float _jumpCooldownTimeSetter;
+    Vector3 _currentVelocity;
 
     public void SetGrounded(bool value)
     {
@@ -49,6 +50,7 @@ public class PlayerManager : MonoBehaviour
     }
 
     public bool GetGrounded { get { return _characterController.isGrounded; } }
+    public Vector3 GetCurSpeed { get { return _currentVelocity; } }
     void Start()
     {
         Cursor.visible = false;
@@ -160,9 +162,9 @@ public class PlayerManager : MonoBehaviour
 
         Vector3 mov = cameraForward * _myDirZ + cameraRight * _myDirX;
 
-        Vector3 velocity = mov.normalized * _curSpeed;
-        velocity.y = _rb.velocity.y; // Mantén la velocidad vertical
-        _characterController.Move(velocity * Time.deltaTime);
+        _currentVelocity = mov.normalized * _curSpeed;
+        _currentVelocity.y = _rb.velocity.y; // Mantén la velocidad vertical
+        _characterController.Move(_currentVelocity * Time.deltaTime);
         //_rb.velocity = velocity;
 
         // Funcionamiento de Gravedad
